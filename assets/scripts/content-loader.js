@@ -1,11 +1,11 @@
-// Function to load and parse YAML content
+// functions to load and parse yml
 async function loadContent() {
   try {
-    const response = await fetch("content.yaml");
+    const response = await fetch(WEBSITE_CONFIG.contentFile);
     const yamlText = await response.text();
     const content = jsyaml.load(yamlText);
 
-    // Populate profile section
+    // populate profile section
     const profileHeader = document.querySelector(".profile-header");
     if (profileHeader && content.profile) {
       profileHeader.innerHTML = `
@@ -14,7 +14,7 @@ async function loadContent() {
       `;
     }
 
-    // Populate about me section
+    // populate about me section
     const aboutMe = document.querySelector(".about-me");
     if (aboutMe && content.aboutMe && content.aboutMe.texts) {
       aboutMe.innerHTML = `
@@ -22,7 +22,7 @@ async function loadContent() {
         <div id="typed-text"></div>
       `;
 
-      // Initialize typing effect
+      // initialize typing effect
       const typedTextElement = document.getElementById("typed-text");
       if (typedTextElement) {
         const typingEffect = new TypingEffect(
@@ -31,12 +31,12 @@ async function loadContent() {
         );
         typingEffect.type();
 
-        // Store the typing effect instance for potential future use
+        // store the typing effect instance for potential future use
         window.typingEffect = typingEffect;
       }
     }
 
-    // Populate contact section
+    // populate contact section
     const contactSection = document.querySelector(".contact-section");
     if (contactSection && content.contact && content.contact.social) {
       contactSection.innerHTML = `
@@ -53,7 +53,7 @@ async function loadContent() {
       `;
     }
 
-    // Populate projects/publications section
+    // populate projects/publications section
     const projectsSection = document.querySelector(".projects");
     if (projectsSection && content.publications) {
       projectsSection.innerHTML = `
@@ -89,7 +89,7 @@ async function loadContent() {
     }
   } catch (error) {
     console.error("Error loading content:", error);
-    // Add fallback content in case of error
+    // add fallback content in case of error
     document.querySelector(".profile-header").innerHTML = `
       <h1>Vahid Majdinasab</h1>
       <p>Machine Learning Engineer/Researcher</p>
@@ -97,5 +97,5 @@ async function loadContent() {
   }
 }
 
-// Load content when the document is ready
+// load content when the document is ready
 document.addEventListener("DOMContentLoaded", loadContent);

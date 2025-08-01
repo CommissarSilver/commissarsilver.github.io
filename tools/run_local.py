@@ -19,9 +19,10 @@ class QuietHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             super().log_message(format, *args)
 
 def main():
-    # Change to the directory containing this script
+    # Change to the project root directory (parent of tools directory)
     script_dir = Path(__file__).parent
-    os.chdir(script_dir)
+    project_root = script_dir.parent
+    os.chdir(project_root)
     
     # Create server
     handler = QuietHTTPRequestHandler
@@ -31,7 +32,7 @@ def main():
             url = f"http://{HOST}:{PORT}/index.html"
             
             print(f"🚀 Starting local development server...")
-            print(f"📁 Serving files from: {script_dir}")
+            print(f"📁 Serving files from: {project_root}")
             print(f"🌐 Your site is available at: {url}")
             print(f"⏹️  Press Ctrl+C to stop the server\n")
             

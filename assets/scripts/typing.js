@@ -1,22 +1,5 @@
-// Global configuration
-const TYPING_CONFIG = {
-    baseSpeed: 45,
-    speedVariation: 0.7,
-    autoCompleteChance: 0.08,
-    autoCompleteDelay: 150,
-    mistakeChance: 0.03,
-    backspaceDelay: 200,
-    punctuationDelay: 300,
-    commonMistakes: {
-        'a': ['aq', 'qa'],
-        'e': ['ew', 're'],
-        'i': ['io', 'ui'],
-        'n': ['nm', 'bn'],
-        's': ['sa', 'sd'],
-        't': ['ty', 'tr'],
-        'h': ['hj', 'gh']
-    }
-};
+// Use global typing configuration from config.js
+const TYPING_CONFIG = WEBSITE_CONFIG.typing;
 
 class TypingEffect {
     constructor(element, texts, options = {}) {
