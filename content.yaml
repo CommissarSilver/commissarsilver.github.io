@@ -1,0 +1,100 @@
+
+profile:
+  name: "Vahid Majdinasab"
+  title: "Machine Learning Engineer/Researcher, Latent Space Enjoyer"
+
+aboutMe:
+  texts:
+    - |
+      I'm Vahid, a PhD researcher at Polytechnique Montreal, focusing on the application of Artificial Intelligence in Software Engineering. My research aims to enhance software development practices through innovative AI solutions, particularly in areas of code generation/auditing, test generation, AI system security, reinforcement learning, and multi agent systems.
+
+      ## Research Interests:
+
+          * AI-powered Software Engineering
+          * Machine Learning System Security
+          * Automated Software Testing
+          * Large Language Models in Software Development
+
+      Currently, I'm developing RAG evaluation pipelines at TrampolineAI. Previously, I've built ML infrastructure at National Bank of Canada, designed intelligent chatbot systems at Airudi, and arhcitected data intensive solutions at Huawei.
+    - |
+      Yokoso! I'm Vahid, currently doing my PhD at Polytechnique Montreal, where I'm teaching AI to understand software engineering better than most bootcamp grads.
+
+      ## The Main Quest:
+
+      * Making AI models actually useful for software engineering
+      * Building systems that understand dev workflows (no cap)
+      * Making test generation not mid
+      * Catching AI models lacking proper attribution
+
+      ## Tech Stack (fr fr):
+
+      * Python wizard (pandas enjoyer, torch enthusiast)
+      * Deep Learning architect
+      * MLOps enjoyer
+      * Data pipeline merchant
+
+      ## The Speedrun:
+      Started as a data scientist at Huawei building terabyte-level pipelines, leveled up to building based chatbots at Airudi, deployed ML infra at National Bank (they actually let me touch prod), and now cooking RAG evaluations at TrampolineAI.
+      When I'm not dropping PRs or reviewing papers, I'm usually building AI tools that actually work or yelling at Anthropic for their API rate limits.
+
+contact:
+  social:
+    - name: "GitHub"
+      url: "https://github.com/CommissarSilver"
+    - name: "LinkedIn"
+      url: "https://www.linkedin.com/in/vahid-majdinasab/"
+    - name: "X"
+      url: "https://x.com/PNSHDsilver"
+    - name: "Email"
+      url: "mailto:a.majdinasab@hotmail.com"
+
+publications:
+  - title: "TraWiC - TOSEM 2024"
+    links:
+      - name: "Paper"
+        url: "https://arxiv.org/abs/2402.09299"
+      - name: "Repository"
+        url: "https://github.com/commissarsilver/trawic"
+    description: "Traditional code auditing for copyright protection faces a new frontier with the rise of LLMs in software development, since it's nearly impossible to determine if an LLM was trained on specific copyrighted code due to non-disclosed training datasets. To tackle this, we developed TraWiC, a model-agnostic approach that uses membership inference to detect code inclusion in LLM training datasets with 83.87% accuracy - significantly outperforming traditional clone detection tools like NiCad (47.64%) while maintaining low resource overhead."
+
+  - title: "DeepCodeProbe"
+    links:
+      - name: "Paper"
+        url: "https://arxiv.org/abs/2407.08890"
+      - name: "Repository"
+        url: "#repo-link"
+    description: "DeepCodeProbe investigates the syntax and representation learning capabilities of machine learning models trained on code, addressing the challenge of their interpretability in software maintenance tasks. The study reveals that while small models capture abstract syntactic representations, they struggle with complete programming language syntax, and increasing model capacity enhances syntax learning but introduces trade-offs like overfitting. This research provides actionable insights, a novel probing methodology, and a replication package to enhance the performance and interpretability of code-related ML models."
+
+  - title: "RLMuT - ICST 2023"
+    links:
+      - name: "Paper"
+        url: "https://arxiv.org/abs/2301.05651"
+      - name: "Repository"
+        url: "https://github.com/FlowSs/RLMutation"
+    description: "RLMutation, introduces a novel framework for mutation testing tailored to reinforcement learning (RL) systems, addressing the challenges posed by their stochastic and dynamic nature. It defines mutation operators based on real faults, proposes methods to generate test environments automatically, and demonstrates that Higher Order Mutations (HOMs) can effectively reveal complex, subtle faults that are harder to detect. This work highlights the critical importance of mutation-killing definitions, offers insights into the behavior of mutations, and provides an open-source replication package for advancing RL-based software testing."
+
+  - title: "MuTAP - IST 2023"
+    links:
+      - name: "Paper"
+        url: "https://www.sciencedirect.com/science/article/pii/S0950584924000739"
+      - name: "Repository"
+        url: "https://github.com/ExpertiseModel/MuTAP"
+    description: "MuTAP, a novel framework that enhances test case generation using large language models (LLMs) by integrating mutation testing techniques to improve bug detection efficiency. It demonstrates that augmenting LLM prompts with surviving mutants significantly increases fault detection rates, achieving up to 28% better results compared to state-of-the-art tools like Pynguin, and outperforms conventional LLM-based approaches in mutation scores and detecting human-written buggy code. This work provides actionable methods, benchmarks, and an open-source package for researchers and practitioners to build upon for more effective automated software testing."
+
+  - title: "Github copilot ai pair programmer: Asset or liability? - JSS 2023"
+    links:
+      - name: "Paper"
+        url: "https://www.sciencedirect.com/science/article/pii/S0164121223001292"
+    description: "MuTAP, a novel framework that enhances test case generation using large language models (LLMs) by integrating mutation testing techniques to improve bug detection efficiency. It demonstrates that augmenting LLM prompts with surviving mutants significantly increases fault detection rates, achieving up to 28% better results compared to state-of-the-art tools like Pynguin, and outperforms conventional LLM-based approaches in mutation scores and detecting human-written buggy code. This work provides actionable methods, benchmarks, and an open-source package for researchers and practitioners to build upon for more effective automated software testing."
+
+  - title: "Assessing the Security of GitHub Copilot's Generated Code-A Targeted Replication Study - SANER 2024"
+    links:
+      - name: "Paper"
+        url: "https://www.sciencedirect.com/science/article/pii/S0164121223001292"
+    description: "AI-powered code generation models, like GitHub Copilot, have significantly enhanced developer productivity but often generate insecure code due to training on buggy public code repositories. This study replicates Pearce et al.’s investigation into Copilot’s security weaknesses, focusing on Python code and using updated versions of Copilot and CodeQL. Results show an improvement in security, with vulnerable code suggestions decreasing from 36.54% to 27.25%, though insecure code generation remains a concern."
+
+  - title: "An empirical study on bugs inside PyTorch: A replication study - ICST 2023"
+    links:
+      - name: "Paper"
+        url: "https://ieeexplore.ieee.org/abstract/document/10336350"
+    description: "Software systems increasingly incorporate deep learning components, enabled by libraries like PyTorch and TensorFlow that offer powerful algorithms and configurations for diverse applications. This study examines bugs in PyTorch, analyzing their causes, symptoms, project locality, and fix patterns, revealing that PyTorch bugs resemble traditional software bugs more than deep learning-specific issues. A comparison with a similar study on TensorFlow highlights both commonalities and differences in the bug identification and fixing processes of these popular frameworks."
