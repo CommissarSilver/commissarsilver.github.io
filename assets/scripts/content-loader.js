@@ -31,6 +31,9 @@ async function loadContent() {
         );
         typingEffect.type();
 
+        // enable click to change text functionality
+        typingEffect.enableClickToChange(aboutMe);
+
         // store the typing effect instance for potential future use
         window.typingEffect = typingEffect;
       }

@@ -7,6 +7,8 @@ class TypingEffect {
         this.texts = Array.isArray(texts) ? texts : [texts];
         this.currentTextIndex = 0;
         this.currentIndex = 0;
+        this.isTyping = false;
+        this.shouldStop = false;
 
         // Create text spans
         this.contentSpan = document.createElement('span');
@@ -59,15 +61,22 @@ class TypingEffect {
     }
 
     async simulateTyping(char) {
+        if (this.shouldStop) return;
+        
         if (Math.random() < TYPING_CONFIG.mistakeChance) {
             const mistakes = TYPING_CONFIG.commonMistakes[char.toLowerCase()] || [];
             if (mistakes.length > 0) {
                 const mistake = mistakes[Math.floor(Math.random() * mistakes.length)];
                 this.contentSpan.textContent += mistake;
                 await this.delay(TYPING_CONFIG.backspaceDelay);
+                
+                if (this.shouldStop) return;
+                
                 this.contentSpan.textContent = this.contentSpan.textContent.slice(0, -mistake.length);
             }
         }
+
+        if (this.shouldStop) return;
 
         this.contentSpan.textContent += char;
         await this.delay(this.getCharacterDelay(char));
@@ -85,8 +94,13 @@ class TypingEffect {
     }
 
     async type() {
+        this.isTyping = true;
         const text = this.texts[this.currentTextIndex];
-        if (this.currentIndex >= text.length) return;
+        
+        if (this.shouldStop || this.currentIndex >= text.length) {
+            this.isTyping = false;
+            return;
+        }
 
         // Try word autocomplete
         if (Math.random() < TYPING_CONFIG.autoCompleteChance) {
@@ -94,6 +108,12 @@ class TypingEffect {
             if (nextWord && nextWord.word.length > 1) {
                 this.previewSpan.textContent = nextWord.word;
                 await this.delay(TYPING_CONFIG.autoCompleteDelay);
+                
+                if (this.shouldStop) {
+                    this.isTyping = false;
+                    return;
+                }
+                
                 this.contentSpan.textContent += nextWord.word;
                 this.previewSpan.textContent = '';
                 this.currentIndex = nextWord.end;
@@ -104,12 +124,27 @@ class TypingEffect {
 
         // Normal typing
         await this.simulateTyping(text[this.currentIndex]);
+        
+        if (this.shouldStop) {
+            this.isTyping = false;
+            return;
+        }
+        
         this.currentIndex++;
         this.type();
     }
 
     async changeText() {
-        // Clear content before starting new text
+        // Stop current typing animation
+        this.shouldStop = true;
+        
+        // Wait for current typing to stop if it's running
+        while (this.isTyping) {
+            await this.delay(10);
+        }
+        
+        // Reset state and clear content
+        this.shouldStop = false;
         this.contentSpan.textContent = '';
         this.previewSpan.textContent = '';
         this.currentTextIndex = (this.currentTextIndex + 1) % this.texts.length;
@@ -121,6 +156,15 @@ class TypingEffect {
         this.element.parentNode.style.height = `${height}px`;
 
         await this.type();
+    }
+
+    enableClickToChange(clickableElement) {
+        if (this.texts.length > 1) {
+            clickableElement.style.cursor = 'pointer';
+            clickableElement.addEventListener('click', () => {
+                this.changeText();
+            });
+        }
     }
 }
 
