@@ -37,6 +37,9 @@ async function loadContent() {
         // store the typing effect instance for potential future use
         window.typingEffect = typingEffect;
       }
+
+      // initialize about me interactive effects
+      initializeAboutMeEffects(aboutMe);
     }
 
     // populate contact section
@@ -98,6 +101,67 @@ async function loadContent() {
       <p>Machine Learning Engineer/Researcher</p>
     `;
   }
+}
+
+// initialize About Me interactive effects
+function initializeAboutMeEffects(aboutMeSection) {
+  const h2 = aboutMeSection.querySelector('h2');
+  
+  if (!h2) return;
+
+  const glitchChars = ['@', '#', '$', '%', '&', '*', '!', '?', '<', '>', '{', '}', '[', ']', '█', '▓', '▒', '░'];
+  let glitchInterval;
+
+  // Character glitch effect
+  function triggerGlitch() {
+    const originalText = 'About Me';
+    let glitchedText = originalText;
+    
+    // Randomly glitch 1-2 characters
+    const numGlitches = Math.random() < 0.5 ? 2 : 7;
+    
+    for (let i = 0; i < numGlitches; i++) {
+      const randomIndex = Math.floor(Math.random() * originalText.length);
+      const randomChar = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+      glitchedText = glitchedText.substring(0, randomIndex) + randomChar + glitchedText.substring(randomIndex + 1);
+    }
+    
+    h2.textContent = glitchedText;
+    h2.classList.add('glitching');
+    
+    // Restore original text after glitch animation
+    setTimeout(() => {
+      h2.textContent = originalText;
+      h2.classList.remove('glitching');
+    }, 100);
+  }
+
+  // Start effects
+  function startEffects() {
+    // Trigger glitch effect randomly every 2-4 seconds
+    function scheduleNextGlitch() {
+      const delay = 1000 + Math.random() * 2000; // 2-4 seconds
+      glitchInterval = setTimeout(() => {
+        triggerGlitch();
+        scheduleNextGlitch();
+      }, delay);
+    }
+    
+    scheduleNextGlitch();
+  }
+
+  // Stop effects
+  function stopEffects() {
+    if (glitchInterval) clearTimeout(glitchInterval);
+    h2.textContent = 'About Me';
+    h2.classList.remove('glitching');
+  }
+
+  // Start the effects
+  startEffects();
+
+  // Store cleanup function for potential future use
+  aboutMeSection.stopInteractiveEffects = stopEffects;
 }
 
 // load content when the document is ready
