@@ -75,12 +75,12 @@ publications:
         url: "https://github.com/commissarsilver/trawic"
     description: "Traditional code auditing for copyright protection faces a new frontier with the rise of LLMs in software development, since it's nearly impossible to determine if an LLM was trained on specific copyrighted code due to non-disclosed training datasets. To tackle this, we developed TraWiC, a model-agnostic approach that uses membership inference to detect code inclusion in LLM training datasets with 83.87% accuracy - significantly outperforming traditional clone detection tools like NiCad (47.64%) while maintaining low resource overhead."
 
-  - title: "DeepCodeProbe"
+  - title: "DeepCodeProbe - EMSE 2025"
     links:
       - name: "Paper"
         url: "https://arxiv.org/abs/2407.08890"
       - name: "Repository"
-        url: "#repo-link"
+        url: "https://github.com/CommissarSilver/DeepCodeProbe"
     description: "DeepCodeProbe investigates the syntax and representation learning capabilities of machine learning models trained on code, addressing the challenge of their interpretability in software maintenance tasks. The study reveals that while small models capture abstract syntactic representations, they struggle with complete programming language syntax, and increasing model capacity enhances syntax learning but introduces trade-offs like overfitting. This research provides actionable insights, a novel probing methodology, and a replication package to enhance the performance and interpretability of code-related ML models."
 
   - title: "RLMuT - ICST 2023"
