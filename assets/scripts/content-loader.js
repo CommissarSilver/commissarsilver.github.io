@@ -4,59 +4,48 @@ async function loadContent() {
     const response = await fetch(WEBSITE_CONFIG.contentFile);
     const yamlText = await response.text();
     const content = jsyaml.load(yamlText);
+    const socialLinksHtml = renderSocialLinks(content.contact?.social || []);
+    const isMobileViewport = window.matchMedia("(max-width: 1023px)").matches;
 
     // populate profile section
     const profileHeader = document.querySelector(".profile-header");
     if (profileHeader && content.profile) {
       profileHeader.innerHTML = `
         <h1>${content.profile.name || ""}</h1>
-        <p>${content.profile.title || ""}</p>
+        <p class="profile-role">${content.profile.title || ""}</p>
+        ${socialLinksHtml ? `<div class="social-links profile-contact">${socialLinksHtml}</div>` : ""}
       `;
     }
 
     // populate about me section
     const aboutMe = document.querySelector(".about-me");
     if (aboutMe && content.aboutMe && content.aboutMe.texts) {
+      const aboutTexts = content.aboutMe.texts.filter(Boolean);
+
       aboutMe.innerHTML = `
         <h2>About Me</h2>
         <div id="typed-text"></div>
       `;
 
-      // initialize typing effect
       const typedTextElement = document.getElementById("typed-text");
       if (typedTextElement) {
-        const typingEffect = new TypingEffect(
-          typedTextElement,
-          content.aboutMe.texts
-        );
-        typingEffect.type();
+        if (isMobileViewport) {
+          typedTextElement.textContent = aboutTexts[0] || "";
+          window.typingEffect = null;
+        } else {
+          const typingEffect = new TypingEffect(typedTextElement, aboutTexts);
+          typingEffect.type();
 
-        // enable click to change text functionality
-        typingEffect.enableClickToChange(aboutMe);
+          // enable click to change text functionality
+          typingEffect.enableClickToChange(aboutMe);
 
-        // store the typing effect instance for potential future use
-        window.typingEffect = typingEffect;
+          // store the typing effect instance for potential future use
+          window.typingEffect = typingEffect;
+        }
       }
 
       // initialize about me interactive effects
       initializeAboutMeEffects(aboutMe);
-    }
-
-    // populate contact section
-    const contactSection = document.querySelector(".contact-section");
-    if (contactSection && content.contact && content.contact.social) {
-      contactSection.innerHTML = `
-        <h2>Get in Touch</h2>
-        <div class="social-links">
-          ${content.contact.social
-            .map(
-              (link) => `
-            <a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.name}</a>
-          `
-            )
-            .join("")}
-        </div>
-      `;
     }
 
     // populate projects/publications section
@@ -70,7 +59,7 @@ async function loadContent() {
               (pub) => `
             <div class="project-item">
               <h3>${pub.title}</h3>
-              <p>${pub.description}</p>
+              <p class="project-description">${pub.description}</p>
               ${
                 pub.links
                   ? `
@@ -92,13 +81,15 @@ async function loadContent() {
             .join("")}
         </div>
       `;
+
+      initializeScrollIndicator(projectsSection);
     }
   } catch (error) {
     console.error("Error loading content:", error);
     // add fallback content in case of error
     document.querySelector(".profile-header").innerHTML = `
       <h1>Vahid Majdinasab</h1>
-      <p>Machine Learning Engineer/Researcher</p>
+      <p class="profile-role">Machine Learning Engineer/Researcher</p>
     `;
   }
 }
@@ -166,3 +157,44 @@ function initializeAboutMeEffects(aboutMeSection) {
 
 // load content when the document is ready
 document.addEventListener("DOMContentLoaded", loadContent);
+
+function renderSocialLinks(links) {
+  if (!Array.isArray(links) || links.length === 0) {
+    return "";
+  }
+
+  return links
+    .map(
+      (link) => `
+        <a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.name}</a>
+      `
+    )
+    .join("");
+}
+
+function initializeScrollIndicator(section) {
+  if (!section) return;
+
+  const updateScrollState = () => {
+    const isScrollable = section.scrollHeight > section.clientHeight + 4;
+    const isScrolled = section.scrollTop > 6;
+    const isScrolledEnd =
+      section.scrollTop + section.clientHeight >= section.scrollHeight - 6;
+
+    section.classList.toggle("is-scrollable", isScrollable);
+    section.classList.toggle("is-scrolled", isScrolled);
+    section.classList.toggle("is-scrolled-end", isScrolledEnd);
+  };
+
+  section.addEventListener("scroll", updateScrollState, { passive: true });
+  window.addEventListener("resize", updateScrollState);
+
+  if (typeof ResizeObserver !== "undefined") {
+    const observer = new ResizeObserver(updateScrollState);
+    observer.observe(section);
+    const grid = section.querySelector(".project-grid");
+    if (grid) observer.observe(grid);
+  }
+
+  requestAnimationFrame(updateScrollState);
+}
