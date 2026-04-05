@@ -5,7 +5,7 @@ profile:
 aboutMe:
   texts:
     - |
-      I'm Vahid, a PhD researcher at Polytechnique Montreal, focusing on the application of Artificial Intelligence in Software Engineering. My research aims to enhance software development practices through innovative AI solutions, particularly in areas of code generation/auditing, test generation, AI system security, reinforcement learning, and multi agent systems.
+      I'm Vahid, a Senior ML Researcher at Huawei Canada, focusing on the application of Artificial Intelligence in Software Engineering. My research aims to enhance software development practices through innovative AI solutions, particularly in areas of code generation/auditing, test generation, AI system security, reinforcement learning, and multi agent systems.
 
       ## Research Interests:
 
@@ -14,9 +14,9 @@ aboutMe:
           * Automated Software Testing
           * Large Language Models in Software Development
 
-      Currently, I'm developing RAG evaluation pipelines at TrampolineAI. Previously, I've built ML infrastructure at National Bank of Canada, designed intelligent chatbot systems at Airudi, and ARCHITECTED data intensive solutions at Huawei.
+      Currently, I'm developing LLMs for autonomous large scale coding at Huawei. Previosuly, I was doing RAG evaluation pipelines at TrampolineAI, built ML infrastructure at National Bank of Canada, designed intelligent chatbot systems at Airudi, and ARCHITECTED data intensive solutions at Huawei.
     - |
-      yokoso! i'm Ahura, currently doing my phd at Polytechnique Montreal, where i'm teaching ai to take my job.
+      yokoso! i'm Ahura, currently doing research on large scale autonomous coding at Huawei and teaching ai to take my job.
 
       ## the main quest:
 
@@ -33,7 +33,7 @@ aboutMe:
 
       ## speedrun:
 
-      started as a data scientist at Huawei, built based chatbots at Airudi, did some ML infra at National Bank (they let me touch prod), and now cooking RAG evals at TrampolineAI.
+      started as a data scientist at Huawei, built based chatbots at Airudi, did some ML infra at National Bank (they let me touch prod), then cooked RAG evals at TrampolineAI.
 
       if i'm not dropping PRs or putting a curse on reviewer 2, i'm yelling at Anthropic for their rate limits.
     - |
@@ -48,12 +48,12 @@ aboutMe:
         + High Lexicons of the Lingua Ex Machina (LLMs in SE)
 
       > Past services to the Omnissiah:
-
+        
         + Constructed machine spirit infrastructure reliquaries at National Bank.
         + Bound daemonhosts into serviceable chat rituals at Airudi.
         + Architected high-density cogitator arrays at Huawei, with minimal machine-spirit screaming.
 
-      > My current pilgrimage leads me through the data-wastes of TrampolineAI, where I architect recursive evaluation circuits for RAG constructs.
+      > My current pilgrimage leads me through the data-wastes of Huawei, where I architect recursive imporvement circuits.
 
 contact:
   social:
@@ -67,6 +67,16 @@ contact:
       url: "mailto:a.majdinasab@hotmail.com"
 
 publications:
+  - title: "PrismBench - TMLR 2026"
+    links:
+      - name: "Paper"
+        url: "https://openreview.net/forum?id=O0bsC6FDly"
+      - name: "Demo"
+        url: "https://prismbench.github.io/Demo"
+      - name: "Repository"
+        url: "https://github.com/CommissarSilver/PrismBench"
+    description: "The rapid advancement of LLMs' code generation capabilities is outpacing traditional evaluation methods. Static benchmarks fail to capture the depth and breadth of LLM capabilities and eventually become obsolete, while most dynamic approaches either rely too heavily on LLM-based evaluation or remain constrained by predefined test sets. To address these issues, we introduce PrismBench, a multi-agent, dynamic benchmarking framework designed to systematically expose and analyze LLM failure modes in code generation tasks. We formulate evaluation as a Markov Decision Process over a structured tree of coding challenges, leveraging a customized Monte Carlo Tree Search algorithm to traverse this tree and discover high-failure scenarios. Our multi-agent setup orchestrates task generation, model response, and analysis, enabling scalable assessment across diverse coding challenges. Additionally, we propose metrics that combine structural traversal patterns with performance across different tasks and difficulty levels to enable diagnostic and systematic comparison of LLMs' performance. We conduct extensive experiments on eight state-of-the-art LLMs and analyze how model architecture and scale influence code generation performance across varying coding tasks."
+  
   - title: "TraWiC - TOSEM 2024"
     links:
       - name: "Paper"
