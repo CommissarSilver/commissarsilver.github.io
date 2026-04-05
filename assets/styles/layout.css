@@ -3,8 +3,8 @@
 /* Column Layout */
 .main-content-wrapper {
     display: flex;
-    gap: 1.5rem;
-    max-width: 1800px;
+    gap: 3rem;
+    max-width: 1360px;
     margin: 0 auto;
 }
 
@@ -13,7 +13,14 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+}
+
+.left-column {
+    gap: 1.75rem;
+}
+
+.right-column {
+    gap: 2.75rem;
 }
 
 /* Common Section Styles */
@@ -24,7 +31,7 @@
     width: 100%;
     margin: 0;
     grid-column: 1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
 }
 
 /* Specific Section Adjustments */
@@ -35,6 +42,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.contact-section {
+    display: none;
 }
 
 /* About Me Section */
@@ -67,8 +78,9 @@
 .project-grid {
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
-    padding-right: 2rem;
+    margin-top: 1.5rem;
+    gap: 1.5rem;
+    padding-right: 0.5rem;
     height: auto;
 }
 

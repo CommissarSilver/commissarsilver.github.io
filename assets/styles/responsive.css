@@ -6,7 +6,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 1rem;
+        gap: 1.75rem;
         position: relative;
     }
 
@@ -53,7 +53,7 @@
         min-height: auto;
         position: relative;
         z-index: 1;
-        margin-bottom: 2rem;
+        margin-bottom: 0;
     }
 
     .left-column,
@@ -61,15 +61,100 @@
         position: relative;
         z-index: 1;
     }
+
+    .profile-contact {
+        display: flex;
+    }
 }
 
 /* Desktop */
 @media (min-width: 1024px) {
     .main-content-wrapper {
         align-items: flex-start;
+        height: 100%;
     }
 
     .container {
         padding: 2rem;
+        height: calc(100vh - 36px);
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    body {
+        padding: 18px;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .terminal-panel {
+        padding: 2.25rem;
+    }
+
+    .left-column,
+    .right-column {
+        min-height: 0;
+        height: 100%;
+    }
+
+    .about-me {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .projects {
+        position: relative;
+        top: auto;
+        flex: 1 1 auto;
+        min-height: 0;
+        max-height: none;
+        overflow-y: auto;
+        padding-right: 1rem;
+        scrollbar-width: thin;
+    }
+
+    .projects::before {
+        content: "";
+        top: 0;
+        height: 1.8rem;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.95), transparent);
+    }
+
+    .projects::after {
+        content: "[ scroll ]";
+        left: auto;
+        right: 0.35rem;
+        bottom: 0.35rem;
+        height: auto;
+        padding: 0.2rem 0.45rem;
+        background: rgba(0, 0, 0, 0.92);
+        border: 1px solid rgba(0, 255, 0, 0.18);
+        border-radius: 2px;
+        color: rgba(0, 255, 0, 0.8);
+        font-family: var(--font-display);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-shadow:
+            -1px 0px 1px rgba(0, 255, 0, 0.18),
+            1px 0px 1px rgba(0, 255, 0, 0.18);
+    }
+
+    .projects.is-scrollable:not(.is-scrolled-end)::after {
+        opacity: 1;
+    }
+
+    .projects.is-scrollable.is-scrolled::before {
+        opacity: 1;
+    }
+
+    .project-grid {
+        padding-right: 0.25rem;
+        padding-bottom: 3rem;
+    }
+
+    .profile-contact {
+        display: flex;
     }
 }

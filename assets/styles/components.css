@@ -3,32 +3,70 @@
 /* Links & Buttons */
 .project-links a,
 .social-links a {
-    color: #00ff00;
+    color: var(--terminal-accent);
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.02em;
     text-decoration: none;
-    padding: 0.3rem 0.8rem;
-    border: 1px solid #2a692a;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--terminal-border-soft);
     border-radius: 3px;
     margin: 2px;
-    transition: all 0.3s ease;
+    background: transparent;
+    text-shadow:
+        -1px 0px 1px rgba(0, 255, 0, 0.2),
+        1px 0px 1px rgba(0, 255, 0, 0.2);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .project-links a:hover,
 .social-links a:hover {
-    background-color: #00ff00;
+    background-color: var(--terminal-accent);
     color: #000000;
-    border-color: #00ff00;
+    border-color: var(--terminal-accent);
     text-shadow: none;
+    transform: translateY(-1px);
+    box-shadow: 0 0 12px var(--terminal-glow);
+}
+
+.project-links a:focus-visible,
+.social-links a:focus-visible {
+    outline: 1px solid var(--terminal-accent);
+    outline-offset: 2px;
+    background-color: var(--terminal-accent);
+    color: #000000;
+    text-shadow: none;
+}
+
+.social-links,
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.profile-contact {
+    margin-top: 1.2rem;
+}
+
+.project-item {
+    padding: 0 0 1.85rem;
+}
+
+.project-item:last-child {
+    padding-bottom: 0;
 }
 
 /* About Me Section Interactive Effects */
 .about-me h2 {
     position: relative;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: color 0.25s ease, border-color 0.25s ease, text-shadow 0.25s ease;
 }
 
 .about-me h2:hover {
     color: white;
+    border-color: rgba(0, 255, 0, 0.45);
 }
 
 /* Glitch effect for About Me header */

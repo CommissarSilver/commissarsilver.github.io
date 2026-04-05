@@ -1,9 +1,41 @@
 /* Base Styles & Reset */
+@font-face {
+    font-family: 'Geist Pixel';
+    src: url('../fonts/GeistPixel-Line.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist Pixel';
+    src: url('../fonts/GeistPixel-Line.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --terminal-bg: #000000;
+    --terminal-panel: rgba(0, 0, 0, 0.86);
+    --terminal-border: rgba(42, 105, 42, 0.95);
+    --terminal-border-soft: rgba(42, 105, 42, 0.45);
+    --terminal-glow: rgba(0, 255, 0, 0.16);
+    --terminal-text: #edf7ed;
+    --terminal-text-soft: #b5c7b5;
+    --terminal-accent: #00ff00;
+    --font-body: 'DOS', 'Perfect DOS VGA 437', monospace;
+    --font-display: 'Geist Pixel', 'DOS', 'Perfect DOS VGA 437', monospace;
+    --font-pixel-heavy: 'Geist Pixel', 'DOS', 'Perfect DOS VGA 437', monospace;
+}
+
 body {
-    background-color: black;
+    background:
+        radial-gradient(circle at top, rgba(0, 255, 0, 0.06), transparent 34%),
+        var(--terminal-bg);
     margin: 0;
-    padding: 0;
-    font-family: 'DOS', 'Perfect DOS VGA 437', monospace;
+    padding: 18px;
+    font-family: var(--font-body);
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -11,25 +43,26 @@ body {
 /* Container */
 .container {
     position: relative;
-    width: 100%;
-    margin: 0;
-    padding: 1rem;
+    width: min(100%, 1520px);
+    margin: 0 auto;
+    padding: 2rem;
     box-sizing: border-box;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.85);
-    border: 2px solid #2a692a;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.84));
+    border: 1px solid var(--terminal-border);
     border-radius: 10px;
 }
 
 /* Selection Styling */
 ::selection {
-    background-color: #00ff00;
+    background-color: var(--terminal-accent);
     color: #000000;
     text-shadow: none;
 }
 
 ::-moz-selection {
-    background-color: #00ff00;
+    background-color: var(--terminal-accent);
     color: #000000;
     text-shadow: none;
 }
