@@ -31,6 +31,7 @@ async function loadContent() {
       if (typedTextElement) {
         if (isMobileViewport) {
           typedTextElement.textContent = aboutTexts[0] || "";
+          enableStaticTextRotation(aboutMe, typedTextElement, aboutTexts);
           window.typingEffect = null;
         } else {
           const typingEffect = new TypingEffect(typedTextElement, aboutTexts);
@@ -157,6 +158,18 @@ function initializeAboutMeEffects(aboutMeSection) {
 
 // load content when the document is ready
 document.addEventListener("DOMContentLoaded", loadContent);
+
+function enableStaticTextRotation(clickableElement, textElement, texts) {
+  if (!clickableElement || !textElement || texts.length <= 1) return;
+
+  let currentTextIndex = 0;
+
+  clickableElement.style.cursor = "pointer";
+  clickableElement.addEventListener("click", () => {
+    currentTextIndex = (currentTextIndex + 1) % texts.length;
+    textElement.textContent = texts[currentTextIndex];
+  });
+}
 
 function renderSocialLinks(links) {
   if (!Array.isArray(links) || links.length === 0) {

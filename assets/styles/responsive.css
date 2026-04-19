@@ -67,6 +67,38 @@
     }
 }
 
+/* Phone */
+@media (max-width: 640px) {
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        padding: 0.75rem;
+        border-radius: 6px;
+    }
+
+    .main-content-wrapper,
+    .left-column,
+    .right-column {
+        gap: 1rem;
+    }
+
+    .terminal-panel {
+        padding: 1.15rem;
+    }
+
+    .project-grid {
+        gap: 1.15rem;
+        margin-top: 1rem;
+        padding-right: 0;
+    }
+
+    .project-item {
+        padding-bottom: 1.35rem;
+    }
+}
+
 /* Desktop */
 @media (min-width: 1024px) {
     .main-content-wrapper {
